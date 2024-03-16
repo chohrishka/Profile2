@@ -93,12 +93,11 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             Column(
               children: [
-                const Icon(
-                    Icons.account_box,
-                    color: Colors.black87,
-                    size: 180.0,
-                    semanticLabel: 'Text to announce in accessibility modes'
+                Image.asset('assets/cats/cat.jpg',
+                    width: 200.0,
+                    height: 185.0
                 ),
+
                 TextButton(style: TextButton.styleFrom(
                   foregroundColor: Colors.blue,
                 ),
