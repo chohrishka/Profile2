@@ -1,5 +1,7 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' show Random;
+import 'package:profile/generated/locale_keys.g.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
@@ -16,9 +18,9 @@ class _MyHomePageState extends State<MyHomePage> {
   String _info = '';
 
   List<String> info = [
-    "мое любимое занятие - просмотр аниме и фильмов",
-    "моя любимая музыка - рэп, хайперпоп, поп-музыка",
-    "мой любимый фильм - 'Начало' "
+    "#мое любимое занятие - просмотр аниме и фильмов",
+    "#моя любимая музыка - рэп, хайперпоп, поп-музыка",
+    "#мой любимый фильм - 'Начало' "
   ];
 
   void _showInfo() {
@@ -60,7 +62,8 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.start,
           children: <Widget>[
             Column(
-              children: [
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
                 Image.asset('assets/cats/cat.jpg',
                     width: 200.0,
                     height: 185.0
@@ -69,11 +72,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 TextButton(style: TextButton.styleFrom(
                   foregroundColor: Colors.blue,
                 ),
-                    onPressed: _incrementCounter, child: const Text('Добавить в друзья')),
+                    onPressed: _incrementCounter, child: Text(LocaleKeys.invite_friend.tr())),
                 TextButton(style: TextButton.styleFrom(
                   foregroundColor: Colors.blue,
                 ),
-                    onPressed: _min, child: const Text('Удалить из друзей'))
+                    onPressed: _min, child: Text(LocaleKeys.remove_from_friends.tr())),
               ],
             ),
             const SizedBox(width: 10),
@@ -85,20 +88,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(
                   padding: EdgeInsets.only(top: 15.0),
                   child: Text(
-                    'Бацарашкина Анастасия',
+                    '#Бацарашкина Анастасия',
                     style: TextStyle(
                       fontSize: 25.0, // Размер шрифта
                       color: Colors.blue, // Цвет текста
                     ),
                   ),
                 ),
-                const Row(
+                Row(
                   children: [
                     Text(
-                        'День рождения:'
+                        LocaleKeys.birthday.tr()
                     ),
-                    Text(
-                      ' 09.11.2001',
+                    const Text(
+                      '#09.11.2001',
                       style: TextStyle(
                         fontSize: 15.0, // Размер шрифта
                         color: Colors.blue, // Цвет текста
@@ -107,13 +110,13 @@ class _MyHomePageState extends State<MyHomePage> {
                   ],
                 ),
 
-                const Row(
+                Row(
                   children: [
                     Text(
-                        'Город:'
+                        LocaleKeys.city.tr()
                     ),
-                    Text(
-                      ' Владивосток',
+                    const Text(
+                      '#Владивосток',
                       style: TextStyle(
                         fontSize: 15.0, // Размер шрифта
                         color: Colors.blue, // Цвет текста
@@ -121,13 +124,13 @@ class _MyHomePageState extends State<MyHomePage> {
                     ),
                   ],
                 ),
-                const Row(
+                Row(
                   children: <Widget>[
                     Text(
-                        'Семейное положение:'
+                        LocaleKeys.marital_status.tr()
                     ),
-                    Text(
-                      ' Не замужем',
+                    const Text(
+                      '#Не замужем',
                       style: TextStyle(
                         fontSize: 15.0, // Размер шрифта
                         color: Colors.blue, // Цвет текста
@@ -142,20 +145,38 @@ class _MyHomePageState extends State<MyHomePage> {
                           textStyle: const TextStyle(fontSize: 15),
                           backgroundColor: Colors.blue
                       ),
-                      onPressed:_showInfo, child: const Text('О себе:'),),
+                      onPressed:_showInfo, child: Text(LocaleKeys.more_info.tr()),),
                     Text(
                         _info),
                   ],),
                 Row(
-                  children: <Widget>[ const Text(
-                      'Количество друзей: '),
+                  children: <Widget>[
                     Text(
-                      '$_counter',
-                      style: const TextStyle(
-                        fontSize: 15,
-                        color: Colors.blue,
+                        LocaleKeys.friends.tr()),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Text(
+                        '$_counter',
+                        style: const TextStyle(
+                          fontSize: 15,
+                          color: Colors.blue,
+                        ),
                       ),
-                    ),],
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(left: 20.0),
+                          child: LangvButton(butFnx: () {
+                                                if (context.locale == const Locale("ru")) {
+                          context.setLocale(const Locale("en"));
+                                                } else {
+                          context.setLocale(const Locale("ru"));
+                                                }
+                                              },),
+                        ),],),
+                  ],
 
                 ),
               ],
@@ -165,4 +186,29 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
+}
+
+
+class LangvButton extends StatelessWidget {
+  Function() butFnx;
+  LangvButton({super.key, required this.butFnx});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+        onPressed: butFnx,
+        child: Padding(
+          padding: const EdgeInsets.only(top: 9, bottom: 14),
+          child: Text(
+            context.locale.toString(),
+            style: const TextStyle(color: Colors.blue, fontSize: 15),
+          ),
+        ),
+    );
+  }
+
+
+
+
+
 }
