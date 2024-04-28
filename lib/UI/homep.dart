@@ -1,8 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'dart:math' show Random;
 import 'package:profile/generated/locale_keys.g.dart';
 
+import '../router/router.dart';
+
+//import '../pages/settings.dart';
+@RoutePage()
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key, required this.title});
 
@@ -18,9 +23,9 @@ class _MyHomePageState extends State<MyHomePage> {
   String _info = '';
 
   List<String> info = [
-    "#мое любимое занятие - просмотр аниме и фильмов",
-    "#моя любимая музыка - рэп, хайперпоп, поп-музыка",
-    "#мой любимый фильм - 'Начало' "
+    "мое любимое занятие - просмотр аниме и фильмов",
+    "моя любимая музыка - рэп, хайперпоп, поп-музыка",
+    "мой любимый фильм - 'Начало' "
   ];
 
   void _showInfo() {
@@ -51,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
 
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        leading: IconButton(onPressed: () => context.router.push(const SettingsRoute()), icon: const Icon(Icons.settings)),
 
         title: Text(widget.title),
       ),
@@ -70,11 +76,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
 
                 TextButton(style: TextButton.styleFrom(
-                  foregroundColor: Colors.blue,
+                  foregroundColor: Colors.purple,
                 ),
                     onPressed: _incrementCounter, child: Text(LocaleKeys.invite_friend.tr())),
                 TextButton(style: TextButton.styleFrom(
-                  foregroundColor: Colors.blue,
+                  foregroundColor: Colors.purple,
                 ),
                     onPressed: _min, child: Text(LocaleKeys.remove_from_friends.tr())),
               ],
@@ -88,10 +94,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 const Padding(
                   padding: EdgeInsets.only(top: 15.0),
                   child: Text(
-                    '#Бацарашкина Анастасия',
+                    'Бацарашкина Анастасия',
                     style: TextStyle(
                       fontSize: 25.0, // Размер шрифта
-                      color: Colors.blue, // Цвет текста
+                      color: Colors.purple, // Цвет текста
                     ),
                   ),
                 ),
@@ -101,10 +107,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         LocaleKeys.birthday.tr()
                     ),
                     const Text(
-                      '#09.11.2001',
+                      '09.11.2001',
                       style: TextStyle(
                         fontSize: 15.0, // Размер шрифта
-                        color: Colors.blue, // Цвет текста
+                        color: Colors.purple, // Цвет текста
                       ),
                     ),
                   ],
@@ -116,10 +122,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         LocaleKeys.city.tr()
                     ),
                     const Text(
-                      '#Владивосток',
+                      'Владивосток',
                       style: TextStyle(
                         fontSize: 15.0, // Размер шрифта
-                        color: Colors.blue, // Цвет текста
+                        color: Colors.purple, // Цвет текста
                       ),
                     ),
                   ],
@@ -130,10 +136,10 @@ class _MyHomePageState extends State<MyHomePage> {
                         LocaleKeys.marital_status.tr()
                     ),
                     const Text(
-                      '#Не замужем',
+                      'Не замужем',
                       style: TextStyle(
                         fontSize: 15.0, // Размер шрифта
-                        color: Colors.blue, // Цвет текста
+                        color: Colors.purple, // Цвет текста
                       ),
                     ),],),
                 Row(
@@ -143,7 +149,7 @@ class _MyHomePageState extends State<MyHomePage> {
                           foregroundColor: Colors.white,
                           padding: const EdgeInsets.all(16.0),
                           textStyle: const TextStyle(fontSize: 15),
-                          backgroundColor: Colors.blue
+                          backgroundColor: Colors.purple
                       ),
                       onPressed:_showInfo, child: Text(LocaleKeys.more_info.tr()),),
                     Text(
@@ -159,7 +165,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         '$_counter',
                         style: const TextStyle(
                           fontSize: 15,
-                          color: Colors.blue,
+                          color: Colors.purple,
                         ),
                       ),
                     ),
@@ -201,7 +207,7 @@ class LangvButton extends StatelessWidget {
           padding: const EdgeInsets.only(top: 9, bottom: 14),
           child: Text(
             context.locale.toString(),
-            style: const TextStyle(color: Colors.blue, fontSize: 15),
+            style: const TextStyle(color: Colors.purple, fontSize: 15),
           ),
         ),
     );
