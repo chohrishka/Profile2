@@ -14,7 +14,7 @@ class AppRouter extends _$AppRouter {
   @override
   List<AutoRoute> get routes => [
     AutoRoute(page:MyRoute.page, initial: true),
-    //AutoRoute(page: NewsRoute.page),
+    AutoRoute(page: NewsRoute.page),
     AutoRoute(page: SettingsRoute.page)
     /// routes go here
   ];

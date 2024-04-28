@@ -56,10 +56,33 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
 
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        leading: IconButton(onPressed: () => context.router.push(const SettingsRoute()), icon: const Icon(Icons.settings)),
+        leading:
+        Row(
+          children: [
+            IconButton(
+            onPressed: () => context.router.push(const SettingsRoute()),
+            icon: const Icon(Icons.settings),
+            ),
 
-        title: Text(widget.title),
-      ),
+            Expanded(
+              flex: 1,
+              child: Container(
+                height: 56.0,
+              child: IconButton(
+              onPressed: () {
+              context.router.push(const NewsRoute());
+              },
+              icon: const Icon(Icons.feed),
+              ),
+    ),
+            ),
+              ],
+        ),
+        title: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: Text(widget.title),
+        ),
+        ),
 
 
       body: Center(
@@ -181,7 +204,11 @@ class _MyHomePageState extends State<MyHomePage> {
                           context.setLocale(const Locale("ru"));
                                                 }
                                               },),
-                        ),],),
+                        ),
+
+                      ],
+
+                    ),
                   ],
 
                 ),

@@ -32,6 +32,7 @@ class MyApp extends StatelessWidget {
         ),
       ),
       home: const MyHomePage(title: 'Мой профиль'),
+      debugShowCheckedModeBanner: false
     );
   }
 }
